@@ -1,4 +1,5 @@
 import express, {Request, Response} from 'express';
+import cors from 'cors';
 import { UnknownRoutesHandler } from './middleware/unknownRoutes.handler';
 import { ExceptionsHandler } from './middleware/exceptions.handler';
 import { ProductsController } from './routes/products/products.controller';
@@ -6,6 +7,7 @@ import { ProductsController } from './routes/products/products.controller';
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 //controllers
 app.use('/products', ProductsController)
