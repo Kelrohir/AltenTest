@@ -11,8 +11,7 @@ export class ProductsService {
     newProduct.id = uuidv4();
     await this.database.push("/data[]", newProduct, true);
 
-    let products = await this.database.getObject<Product[]>("/data");
-    return products;
+    return await this.database.getObject<Product[]>("/data");
   }
 
   async findAll(): Promise<Product[]> {
@@ -23,22 +22,24 @@ export class ProductsService {
     return (await this.database.getObject<Product[]>("/data")).find( x => x.id == productId) as Product;
   }
   
-  async updateOneById(productId: string, updatedProduct: Product): Promise<Product> {
+  async updateOneById(productId: string, updatedProduct: Product): Promise<Product[]> {
     let productIndex = await this.database.getIndex("/data", productId);
 
     if(productIndex !== -1){
-      await this.database.delete(`/data[${productIndex}]`);  
-      await this.database.push("/data[]", updatedProduct, true);  
+      await this.database.delete(`/data[${productIndex}]`);
+      await this.database.push("/data[]", updatedProduct, true);
     }
 
-    return (await this.database.getObject<Product[]>("/data")).find( x => x.id == productId) as Product;
+    return await this.database.getObject<Product[]>("/data");
   }
 
-  async deleteOneById(productId: string) {
-    let productIndex = await this.database.getIndex("/data", productId);
+  async deleteOneById(productId: string): Promise<Product[]> {
+    let productIndex = await this.database.getIndex("/data", productId, "id");
 
-    if(productIndex){
+    if(productIndex !== -1){
       await this.database.delete(`/data[${productIndex}]`);
     }
+
+    return await this.database.getObject<Product[]>("/data");
   }
 }

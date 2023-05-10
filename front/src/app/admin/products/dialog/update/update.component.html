@@ -1,0 +1,52 @@
+<div>
+    <form [formGroup]="productForm">
+  
+      <span class="p-float-label">
+        <input pInputText formControlName="code" />
+        <label>Code</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText formControlName="name" />
+        <label>Name</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText formControlName="description" />
+        <label>Description</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText pKeyFilter="int" formControlName="price" />
+        <label>Price</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText pKeyFilter="int" formControlName="quantity" />
+        <label>Quantity</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText formControlName="inventoryStatus" />
+        <label>InventoryStatus</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText formControlName="category" />
+        <label>Category</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText formControlName="image" />
+        <label>Image</label>
+      </span>
+  
+      <span class="p-float-label mt-2">
+        <input pInputText pKeyFilter="int" formControlName="rating" />
+        <label>Rating</label>
+      </span>
+    
+      <button class="btn btn-primary btn-sm" (click)="validate()">Validate</button>
+    </form>
+  </div>
+  
