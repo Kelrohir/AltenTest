@@ -1,5 +1,5 @@
 # AltenTest
 # Back
-Start the application
+<h2>Start the application</h2>
 Install dependencies "npm i"
 Start the application "npm run dev"
