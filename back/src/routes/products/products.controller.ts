@@ -36,6 +36,7 @@ ProductsController.patch('/:productId', async (req: Request<{ productId: string 
 ProductsController.delete('/:productId', async (req: Request<{ productId: string }>, res: Response) => {
   const result = await service.deleteOneById(req.params.productId);
 
-  return res.status(200).send("Product successfuly deleted");
+  return res.status(200).json(result);
 })
+
 export { ProductsController }

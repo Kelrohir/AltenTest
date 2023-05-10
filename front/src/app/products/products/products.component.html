@@ -1,0 +1,57 @@
+<div class="app-frame">
+     <p-dataView #dv [value]="products" [rows]="10" [paginator]="true" [sortField]="sortField" [sortOrder]="sortOrder" [rowsPerPageOptions]="[10,25,50]" filterBy="productFilter">
+        <ng-template pTemplate="header">
+          <div class="d-flex justify-content-between">
+            <div class="">
+                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="mb-2 mb-md-0"></p-dropdown>
+            </div>
+            <div class="">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template let-product pTemplate="listItem">
+            <div class="col-12 d-flex">
+                <div class="col-12 d-flex p-2">
+                    <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" />
+                    <div class="w-100 ps-3 d-flex justify-content-between flex-column">
+                        <div>
+                            <div>{{ product.name }}</div>
+                            <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                            <div>
+                                <span>
+                                    <i class="pi pi-tag"></i>
+                                    <span>{{ product.category }}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <span>{{'$'+ product.price }}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        
+        <ng-template let-product pTemplate="gridItem">
+          <div class="col-4">
+              <div class="">
+                  <div class="">
+                      <span class="">
+                          <i class=""></i>
+                          <span class="">{{ product.category }}</span>
+                      </span>
+                  </div>
+                  <div class="">
+                      <img class="" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" />
+                      <div class="">{{ product.name }}</div>
+                      <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                  </div>
+                  <div class="">
+                      <span class="">{{ '$' + product.price }}</span>
+                      <button pButton icon="pi pi-shopping-cart" class="" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+    </p-dataView>
+</div>
